@@ -65,6 +65,9 @@ describe('Stringify', function() {
     it('should support parse', function(done) {
       fs.createReadStream(dest)
         .pipe(createParseStream('*'))
+        .on('data', function() {
+          assert.ok(false);
+        })
         .on('end', function() {
           done();
         });
